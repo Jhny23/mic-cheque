@@ -1,30 +1,35 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
-import PosterGrid from "@/components/PosterGrid";
-import { HostBase } from "@/components/HostPoster";
+import HostRow, { Host } from "@/components/HostRow";
 
 export const metadata: Metadata = {
   title: "Hosts — Mic Cheque Podcast",
   description:
-    "Meet Chaxy, Mwass and Mariah — the voices behind Mic Cheque Podcast.",
+    "Meet Chaxy, Mariah and Mwass — the voices behind Mic Cheque Podcast.",
 };
 
-// Placeholder copy — swap in real bios/roles and photo paths once ready.
-const hosts: HostBase[] = [
+// Placeholder bios/roles — swap in real copy once ready.
+const hosts: Host[] = [
   {
+    number: "01",
     name: "Chaxy",
     role: "The Wildcard",
     bio: "Placeholder bio — drop Chaxy's real one-liner here once it's ready.",
+    photo: "/hosts/chaxy.jpg",
   },
   {
-    name: "Mwass",
-    role: "The Anchor",
-    bio: "Placeholder bio — drop Mwass's real one-liner here once it's ready.",
-  },
-  {
+    number: "02",
     name: "Mariah",
     role: "The Chaos",
     bio: "Placeholder bio — drop Mariah's real one-liner here once it's ready.",
+    photo: "/hosts/mariah.jpg",
+  },
+  {
+    number: "03",
+    name: "Mwass",
+    role: "The Anchor",
+    bio: "Placeholder bio — drop Mwass's real one-liner here once it's ready.",
+    photo: "/hosts/mwass.jpg",
   },
 ];
 
@@ -44,27 +49,14 @@ export default function HostsPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 max-w-4xl mx-auto">
-        <PosterGrid hosts={hosts} />
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10">
-          {hosts.map((host, i) => (
-            <div key={host.name}>
-              <span className="font-body font-bold text-xs text-static">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h2 className="font-display uppercase text-2xl text-ink leading-none mt-1">
-                {host.name}
-              </h2>
-              <p className="font-body font-bold text-xs uppercase tracking-wide text-signal mt-1.5">
-                {host.role}
-              </p>
-              <p className="font-body text-sm text-ink mt-2 leading-snug opacity-80">
-                {host.bio}
-              </p>
-            </div>
-          ))}
-        </div>
+      <section className="px-6 max-w-5xl mx-auto divide-y-2 divide-ink/10">
+        {hosts.map((host, i) => (
+          <HostRow
+            host={host}
+            align={i % 2 === 0 ? "left" : "right"}
+            key={host.name}
+          />
+        ))}
       </section>
     </main>
   );
