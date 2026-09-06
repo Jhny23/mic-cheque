@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import PosterGrid from "@/components/PosterGrid";
-import { Host } from "@/components/HostPoster";
+import { HostBase } from "@/components/HostPoster";
 
 export const metadata: Metadata = {
   title: "Hosts — Mic Cheque Podcast",
@@ -10,24 +10,21 @@ export const metadata: Metadata = {
 };
 
 // Placeholder copy — swap in real bios/roles and photo paths once ready.
-const hosts: Host[] = [
+const hosts: HostBase[] = [
   {
     name: "Chaxy",
     role: "The Wildcard",
     bio: "Placeholder bio — drop Chaxy's real one-liner here once it's ready.",
-    block: "marigold",
   },
   {
     name: "Mwass",
     role: "The Anchor",
     bio: "Placeholder bio — drop Mwass's real one-liner here once it's ready.",
-    block: "signal",
   },
   {
     name: "Mariah",
     role: "The Chaos",
     bio: "Placeholder bio — drop Mariah's real one-liner here once it's ready.",
-    block: "ink",
   },
 ];
 
