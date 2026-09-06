@@ -1,6 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+
+const HOSTS = [
+  { src: "/hosts/host-1.jpg", alt: "Chaxy" },
+  { src: "/hosts/host-2.jpg", alt: "Mwass" },
+  { src: "/hosts/host-3.jpg", alt: "Mariah" },
+];
 
 function Static() {
   return (
@@ -57,9 +64,9 @@ export default function Hero() {
       <div className="relative flex flex-col items-start justify-center h-full px-6 pt-40 pb-16 max-w-5xl mx-auto">
         {/* host cutouts — "tune in" from static to filled */}
         <div className="flex items-end mb-4">
-          {[0, 1, 2].map((i) => (
+          {HOSTS.map((host, i) => (
             <motion.div
-              key={i}
+              key={host.alt}
               className="relative"
               style={{ marginLeft: i === 0 ? 0 : -24, zIndex: 3 - i }}
               initial={{ opacity: 0.4 }}
@@ -67,7 +74,7 @@ export default function Hero() {
               transition={{ delay: 0.3 + i * 0.15, duration: 0.4 }}
             >
               <div
-                className="overflow-hidden flex items-center justify-center bg-[#2a2a2a] border-4 border-paper"
+                className="relative overflow-hidden border-4 border-paper"
                 style={{
                   width: 96,
                   height: 96,
@@ -75,10 +82,14 @@ export default function Hero() {
                   boxShadow: "0 4px 0 rgba(0,0,0,0.15)",
                 }}
               >
-                {/* swap for real halftone host portraits */}
-                <span className="text-2xl" style={{ filter: "grayscale(1)" }}>
-                  🕶️
-                </span>
+                <Image
+                  src={host.src}
+                  alt={host.alt}
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                  style={{ filter: "grayscale(1) contrast(1.1)" }}
+                />
               </div>
             </motion.div>
           ))}
