@@ -3,12 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const HOSTS = [
-  { src: "/hosts/host-1.jpg", alt: "Chaxy" },
-  { src: "/hosts/host-2.jpg", alt: "Mwass" },
-  { src: "/hosts/host-3.jpg", alt: "Mariah" },
-];
-
 function Static() {
   return (
     <div
@@ -62,59 +56,28 @@ export default function Hero() {
       />
 
       <div className="relative flex flex-col items-start justify-center h-full px-6 pt-40 pb-16 max-w-5xl mx-auto">
-        {/* host cutouts — "tune in" from static to filled */}
-        <div className="flex items-end mb-4">
-          {HOSTS.map((host, i) => (
-            <motion.div
-              key={host.alt}
-              className="relative"
-              style={{ marginLeft: i === 0 ? 0 : -24, zIndex: 3 - i }}
-              initial={{ opacity: 0.4 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 + i * 0.15, duration: 0.4 }}
-            >
-              <div
-                className="relative overflow-hidden border-4 border-paper"
-                style={{
-                  width: 96,
-                  height: 96,
-                  borderRadius: "9999px",
-                  boxShadow: "0 4px 0 rgba(0,0,0,0.15)",
-                }}
-              >
-                <Image
-                  src={host.src}
-                  alt={host.alt}
-                  fill
-                  sizes="96px"
-                  className="object-cover"
-                  style={{ filter: "grayscale(1) contrast(1.1)" }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* visually hidden but present for SEO/accessibility — the visible
+            title lives inside the sticker lockup image below */}
+        <h1 className="sr-only">Mic Cheque Podcast</h1>
 
-        {/* sticker logo lockup */}
-        <div
-          className="relative inline-block px-6 py-4 bg-paper"
-          style={{ transform: "rotate(-1deg)" }}
+        {/* the original sticker lockup — hosts + wordmark as one asset */}
+        <motion.div
+          className="relative w-full max-w-xl -ml-2"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span
-            className="inline-block absolute -top-1.5 -left-1.5 bg-signal"
-            style={{ width: 10, height: 10, borderRadius: "9999px" }}
+          <Image
+            src="/brand/mic-cheque-lockup.png"
+            alt="Mic Cheque Podcast — Chaxy, Mwass and Mariah"
+            width={1626}
+            height={900}
+            priority
+            className="w-full h-auto"
           />
-          <h1
-            className="font-display leading-[0.82] uppercase text-ink"
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
-          >
-            Mic Cheque
-            <br />
-            Podcast
-          </h1>
-        </div>
+        </motion.div>
 
-        <p className="font-body font-medium mt-6 max-w-md text-base leading-relaxed text-ink">
+        <p className="font-body font-medium mt-2 max-w-md text-base leading-relaxed text-ink">
           All the scoop served silly. New episodes every Wednesday and Sunday
           — your weekly dose of madness.
         </p>
