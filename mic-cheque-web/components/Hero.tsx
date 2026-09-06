@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       className="relative overflow-hidden bg-marigold"
-      style={{ minHeight: "88vh" }}
+      style={{ minHeight: "100vh" }}
     >
       {/* paper grain */}
       <div
