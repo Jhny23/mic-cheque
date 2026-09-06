@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design rule: no rounded corners on UI chrome (buttons, nav, cards, sections).
+   The only rounded shapes on this site are real-world objects that are
+   naturally round — TV cabinets and host portrait circles — and those set
+   their own border-radius explicitly in their components. Don't reach for
+   Tailwind's rounded-* utilities anywhere else. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f5f3ee;
+}
+
+::selection {
+  background: #c41e1e;
+  color: #f5f3ee;
+}
