@@ -8,7 +8,6 @@ export type Episode = {
   tag: string | null;
   isStatic: boolean;
   antenna: boolean;
-  size: "large" | "small";
 };
 
 const cabinetPalettes = [
@@ -48,21 +47,16 @@ export default function RetroTV({
   }, [index]);
 
   const showStatic = ep.isStatic || !tuned;
-  const isLarge = ep.size === "large";
 
   return (
-    <div
-      className={`flex flex-col items-center ${
-        isLarge ? "w-full sm:w-[46%]" : "w-full sm:w-[24%]"
-      }`}
-    >
+    <div className="flex flex-col items-center w-full">
       <div className="flex gap-3 h-5 -mb-1">
         {ep.antenna && (
           <>
             <div
               style={{
                 width: 2,
-                height: isLarge ? 26 : 18,
+                height: 20,
                 background: "#666",
                 transform: "rotate(-18deg)",
                 transformOrigin: "bottom",
@@ -71,7 +65,7 @@ export default function RetroTV({
             <div
               style={{
                 width: 2,
-                height: isLarge ? 26 : 18,
+                height: 20,
                 background: "#666",
                 transform: "rotate(18deg)",
                 transformOrigin: "bottom",
@@ -90,10 +84,9 @@ export default function RetroTV({
         }}
       >
         <div
-          className="relative overflow-hidden bg-[#0a0a0a]"
+          className="relative overflow-hidden bg-[#0a0a0a] aspect-square"
           style={{
             borderRadius: "6px",
-            aspectRatio: isLarge ? "5/4" : "1/1",
             boxShadow: "inset 0 0 12px rgba(0,0,0,0.8)",
           }}
         >
@@ -103,7 +96,7 @@ export default function RetroTV({
             <div className="absolute inset-0 flex items-center justify-center bg-marigold">
               <span
                 className="font-display text-ink"
-                style={{ fontSize: isLarge ? "3.4rem" : "1.9rem", opacity: 0.18 }}
+                style={{ fontSize: "2.4rem", opacity: 0.18 }}
               >
                 {ep.n}
               </span>
@@ -136,8 +129,8 @@ export default function RetroTV({
                 key={i}
                 className="inline-block bg-[#888]"
                 style={{
-                  width: isLarge ? 9 : 6,
-                  height: isLarge ? 9 : 6,
+                  width: 7,
+                  height: 7,
                   borderRadius: "9999px",
                   boxShadow: "inset 0 1px 1px rgba(0,0,0,0.4)",
                 }}
@@ -149,22 +142,18 @@ export default function RetroTV({
               <span
                 key={i}
                 className="inline-block bg-[#666]"
-                style={{ width: 2, height: isLarge ? 7 : 5 }}
+                style={{ width: 2, height: 6 }}
               />
             ))}
           </div>
         </div>
       </div>
 
-      <div className="mt-3 text-center px-1 h-[34px]">
+      <div className="mt-3 text-center px-1">
         <p className="font-body font-medium text-[10px] text-static">
           EP {ep.n}
         </p>
-        <p
-          className={`font-body font-semibold text-ink leading-tight ${
-            isLarge ? "text-sm" : "text-[11px]"
-          }`}
-        >
+        <p className="font-body font-semibold text-[11px] text-ink leading-tight">
           {ep.title}
         </p>
       </div>
