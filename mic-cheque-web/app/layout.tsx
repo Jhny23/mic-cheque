@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Space_Grotesk } from "next/font/google";
+import CookieNotice from "@/components/CookieNotice";
 import "./globals.css";
 
 const anton = Anton({
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${anton.variable} ${spaceGrotesk.variable} font-body bg-paper text-ink`}
       >
         {children}
+        <CookieNotice />
       </body>
     </html>
   );
