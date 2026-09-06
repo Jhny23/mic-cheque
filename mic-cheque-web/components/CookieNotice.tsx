@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const STORAGE_KEY = "mc-cookie-consent";
 
-const WIN_FONT = "Tahoma, Geneva, 'MS Sans Serif', sans-serif";
-
 export default function CookieNotice() {
   const [visible, setVisible] = useState(false);
-  const [pressed, setPressed] = useState<"ok" | "cancel" | null>(null);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -23,144 +21,97 @@ export default function CookieNotice() {
     setVisible(false);
   }
 
-  if (!visible) return null;
-
-  const bevelRaised = {
-    borderTop: "2px solid #fff",
-    borderLeft: "2px solid #fff",
-    borderBottom: "2px solid #404040",
-    borderRight: "2px solid #404040",
-  };
-
-  const bevelInset = {
-    borderTop: "2px solid #404040",
-    borderLeft: "2px solid #404040",
-    borderBottom: "2px solid #fff",
-    borderRight: "2px solid #fff",
-  };
-
   return (
-    <div
-      className="fixed bottom-5 right-5 z-50 w-[320px]"
-      style={{ background: "#c0c0c0", ...bevelRaised, fontFamily: WIN_FONT }}
-    >
-      {/* title bar */}
-      <div
-        className="flex items-center justify-between px-1.5 py-1"
-        style={{
-          background: "linear-gradient(90deg, #000080, #1084d0)",
-        }}
-      >
-        <span
-          className="text-white text-xs font-bold truncate"
-          style={{ fontFamily: WIN_FONT }}
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="fixed bottom-5 left-5 right-5 sm:right-auto sm:w-[360px] z-50"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0, rotate: -1.5 }}
+          exit={{ opacity: 0, y: 20, scale: 0.95 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          🍪 cookies.exe
-        </span>
-        <button
-          onClick={() => respond("declined")}
-          className="text-black text-xs font-bold leading-none px-1"
-          style={{
-            background: "#c0c0c0",
-            ...bevelRaised,
-            width: 18,
-            height: 18,
-          }}
-          aria-label="Close"
-        >
-          ✕
-        </button>
-      </div>
+          <div className="relative bg-paper p-5 shadow-[0_8px_0_rgba(0,0,0,0.15)]">
+            {/* tape corner */}
+            <div
+              className="absolute -top-2 left-8 bg-ink/10"
+              style={{ width: 44, height: 16, transform: "rotate(-3deg)" }}
+            />
 
-      {/* body */}
-      <div className="p-3">
-        <div className="flex gap-3">
-          <div className="text-3xl leading-none select-none">🍪</div>
-          <p className="text-xs leading-snug" style={{ color: "#000" }}>
-            This website uses <b>COOKIES</b> to enhance your browsing
-            experience!! Click OK to continue or Cancel to browse without
-            the good stuff.
-          </p>
-        </div>
+            {/* eyebrow + blinking badge */}
+            <div className="flex items-center gap-2 mb-2">
+              <span className="font-body font-bold text-[10px] uppercase tracking-wide text-static">
+                cookies.txt
+              </span>
+              <span
+                className="font-body font-bold text-[9px] uppercase tracking-wide bg-signal text-paper px-1.5 py-0.5"
+                style={{ animation: "mc-blink 1.1s steps(1) infinite" }}
+              >
+                New
+              </span>
+            </div>
 
-        {/* marquee */}
-        <div
-          className="mt-2 overflow-hidden whitespace-nowrap text-xs"
-          style={{ background: "#000", color: "#0f0", ...bevelInset, padding: "2px 0" }}
-        >
-          <div className="inline-block" style={{ animation: "mc-marquee 9s linear infinite" }}>
-            ★彡 THANKS FOR VISITING MIC CHEQUE PODCAST 彡★ BEST VIEWED AT
-            800x600 ★彡 NEW EPISODES EVERY WED &amp; SUN 彡★ SIGN OUR
-            GUESTBOOK 彡★&nbsp;&nbsp;&nbsp;
+            <h2 className="font-display uppercase text-2xl text-ink leading-none">
+              Real Talk
+            </h2>
+
+            <p className="font-body text-sm text-ink leading-relaxed opacity-80 mt-2">
+              We use cookies to keep the banter running smoothly. Not the
+              edible kind — no crumbs, just data that makes the site work
+              better.
+            </p>
+
+            {/* marquee ticker, in-brand */}
+            <div className="mt-3 overflow-hidden whitespace-nowrap bg-ink py-1.5">
+              <div
+                className="inline-block font-body font-bold text-[10px] uppercase tracking-wide text-marigold"
+                style={{ animation: "mc-marquee 10s linear infinite" }}
+              >
+                ★ new episodes every wed &amp; sun ★ #bantertime ★ pull up
+                to the next hangout ★ new episodes every wed &amp; sun ★
+                #bantertime ★ pull up to the next hangout ★
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-3">
+              <span className="font-body font-medium text-[10px] text-static">
+                visitor no. 004213
+              </span>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => respond("declined")}
+                  className="font-body font-bold px-3 py-1.5 uppercase text-[11px] tracking-wide border-2 border-ink text-ink"
+                >
+                  Nah
+                </button>
+                <button
+                  onClick={() => respond("accepted")}
+                  className="font-body font-bold px-3 py-1.5 uppercase text-[11px] tracking-wide bg-ink text-paper"
+                >
+                  Bet
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="flex items-center gap-1.5 mt-2">
-          <span
-            className="text-[10px] font-bold px-1"
-            style={{
-              background: "#ff0",
-              color: "#000",
-              animation: "mc-blink 1s steps(1) infinite",
-            }}
-          >
-            NEW!
-          </span>
-          <span className="text-[10px]" style={{ color: "#000" }}>
-            hits: 004213
-          </span>
-        </div>
-
-        {/* buttons */}
-        <div className="flex justify-end gap-2 mt-3">
-          <button
-            onMouseDown={() => setPressed("cancel")}
-            onMouseUp={() => setPressed(null)}
-            onMouseLeave={() => setPressed(null)}
-            onClick={() => respond("declined")}
-            className="text-xs px-4 py-1"
-            style={{
-              background: "#c0c0c0",
-              color: "#000",
-              ...(pressed === "cancel" ? bevelInset : bevelRaised),
-              fontFamily: WIN_FONT,
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onMouseDown={() => setPressed("ok")}
-            onMouseUp={() => setPressed(null)}
-            onMouseLeave={() => setPressed(null)}
-            onClick={() => respond("accepted")}
-            className="text-xs px-4 py-1 font-bold"
-            style={{
-              background: "#c0c0c0",
-              color: "#000",
-              ...(pressed === "ok" ? bevelInset : bevelRaised),
-              fontFamily: WIN_FONT,
-            }}
-          >
-            OK
-          </button>
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes mc-marquee {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(-100%);
-          }
-        }
-        @keyframes mc-blink {
-          50% {
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </div>
+          <style jsx>{`
+            @keyframes mc-marquee {
+              from {
+                transform: translateX(100%);
+              }
+              to {
+                transform: translateX(-100%);
+              }
+            }
+            @keyframes mc-blink {
+              50% {
+                opacity: 0.25;
+              }
+            }
+          `}</style>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
