@@ -1,9 +1,11 @@
-import RetroTV, { Episode } from "./RetroTV";
+import RetroTV, { Episode, TV_FRAMES } from "./RetroTV";
 
+// photo left empty for now — pass an episode screenshot path once you have one,
+// e.g. photo: "/episodes/368.jpg"
 const episodes: Episode[] = [
-  { n: "368", title: "Kalasha Season", tag: "LIVE", isStatic: false, antenna: true },
-  { n: "367", title: "World Cup Talk ft. TOBIT", tag: "NEW", isStatic: false, antenna: false },
-  { n: "365", title: "Eldoret Hangout Recap", tag: "HOT", isStatic: false, antenna: true },
+  { n: "368", title: "Kalasha Season", tag: "LIVE" },
+  { n: "367", title: "World Cup Talk ft. TOBIT", tag: "NEW" },
+  { n: "365", title: "Eldoret Hangout Recap", tag: "HOT" },
 ];
 
 export default function TuneIn() {
@@ -18,9 +20,9 @@ export default function TuneIn() {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 items-end">
         {episodes.map((ep, i) => (
-          <RetroTV ep={ep} index={i} key={ep.n} />
+          <RetroTV ep={ep} frame={TV_FRAMES[i % TV_FRAMES.length]} key={ep.n} />
         ))}
       </div>
 
