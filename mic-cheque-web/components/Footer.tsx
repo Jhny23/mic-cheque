@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="relative bg-ink text-paper px-6 py-14 overflow-hidden">
       {/* merch badge — decorative, tucked in the corner like a real pin */}
       <div
-        className="absolute -top-4 right-6 hidden sm:block pointer-events-none"
+        className="absolute -top-2 right-3 sm:-top-4 sm:right-6 pointer-events-none"
         style={{ transform: "rotate(8deg)" }}
       >
         <Image
@@ -34,12 +34,13 @@ export default function Footer() {
           alt="#ChequeMate pin badge"
           width={110}
           height={110}
+          className="w-14 h-14 sm:w-[110px] sm:h-[110px]"
         />
       </div>
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap justify-between gap-12">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-between gap-x-8 gap-y-10">
           {/* identity */}
-          <div className="max-w-xs">
+          <div className="col-span-2 sm:col-auto max-w-xs">
             <span className="font-body font-semibold text-sm tracking-wide">
               MIC CHEQUE PODCAST
             </span>
