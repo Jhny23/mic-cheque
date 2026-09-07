@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Mic Cheque Podcast — All the scoop served silly",
+  title: "Mic Cheque Podcast ",
   description:
     "Mic Cheque Podcast with Chaxy, Mariah and Mwass. New episodes every Wednesday and Sunday. #BanterTime",
 };

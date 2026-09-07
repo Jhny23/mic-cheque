@@ -13,22 +13,22 @@ const hosts: Host[] = [
   {
     number: "01",
     name: "Chaxy",
-    role: "The Wildcard",
-    bio: "Placeholder bio — drop Chaxy's real one-liner here once it's ready.",
+    role: "Mastermind",
+    bio: "Give me some time, I’ll paint a picture of myself!",
     photo: "/hosts/chaxy.jpg",
   },
   {
     number: "02",
     name: "Mariah",
-    role: "The Chaos",
-    bio: "Placeholder bio — drop Mariah's real one-liner here once it's ready.",
+    role: " Media Personality",
+    bio: "Black and unstoppable!",
     photo: "/hosts/mariah.jpg",
   },
   {
     number: "03",
     name: "Mwass",
     role: "The Anchor",
-    bio: "Placeholder bio — drop Mwass's real one-liner here once it's ready.",
+    bio: "half human, a third bad at fractions. as seen in the movie about a guy lying about being in a movie. desiderata. Writing..",
     photo: "/hosts/mwass.jpg",
   },
 ];

@@ -78,8 +78,7 @@ export default function Hero() {
         </motion.div>
 
         <p className="font-body font-medium mt-2 max-w-md text-base leading-relaxed text-ink">
-          All the scoop served silly. New episodes every Wednesday and Sunday
-          — your weekly dose of madness.
+          We like to talk. You like to hear us. We love that you listen. Thank you for supporting the show and rocking the merch.
         </p>
 
         <div className="mt-8 flex items-center gap-6">
