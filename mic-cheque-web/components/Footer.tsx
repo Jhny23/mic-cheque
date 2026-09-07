@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Episodes", href: "/#episodes" },
@@ -22,7 +23,19 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-paper px-6 py-14">
+    <footer className="relative bg-ink text-paper px-6 py-14 overflow-hidden">
+      {/* merch badge — decorative, tucked in the corner like a real pin */}
+      <div
+        className="absolute -top-4 right-6 hidden sm:block pointer-events-none"
+        style={{ transform: "rotate(8deg)" }}
+      >
+        <Image
+          src="/brand/chequemate-pin.png"
+          alt="#ChequeMate pin badge"
+          width={110}
+          height={110}
+        />
+      </div>
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-wrap justify-between gap-12">
           {/* identity */}
