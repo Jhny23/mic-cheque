@@ -24,7 +24,7 @@ const episodes: Episode[] = [
 export default function TuneIn() {
   return (
     <section id="episodes" className="px-6 py-16 max-w-4xl mx-auto">
-      <div className="flex items-end justify-between mb-10">
+      <div className="flex flex-wrap items-end justify-between gap-2 mb-10">
         <h2 className="font-display uppercase leading-none text-ink text-[clamp(2rem,4.5vw,3.2rem)]">
           Tune In
         </h2>

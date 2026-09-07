@@ -82,7 +82,7 @@ export default function Hero() {
           Thank you for supporting the show and rocking the merch.
         </p>
 
-        <div className="mt-8 flex items-center gap-6">
+        <div className="mt-8 flex flex-wrap items-center gap-6">
           <a
             href="#episodes"
             className="font-body font-bold px-6 py-3 uppercase text-sm tracking-wide bg-ink text-paper"

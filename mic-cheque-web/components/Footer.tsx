@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="relative bg-ink text-paper px-6 py-14 overflow-hidden">
       {/* merch badge — decorative, tucked in the corner like a real pin */}
       <div
-        className="absolute -top-2 right-3 sm:-top-4 sm:right-6 pointer-events-none"
+        className="absolute top-3 right-3 sm:top-4 sm:right-6 pointer-events-none z-10"
         style={{ transform: "rotate(8deg)" }}
       >
         <Image
@@ -34,7 +34,7 @@ export default function Footer() {
           alt="#ChequeMate pin badge"
           width={110}
           height={110}
-          className="w-14 h-14 sm:w-[110px] sm:h-[110px]"
+          className="w-12 h-12 sm:w-[110px] sm:h-[110px]"
         />
       </div>
       <div className="max-w-5xl mx-auto">
