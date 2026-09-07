@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import EventRow, { HangoutEvent } from "@/components/EventRow";
-import RecapTile from "@/components/RecapTile";
 
 export const metadata: Metadata = {
   title: "Hangouts — Mic Cheque Podcast",
@@ -9,26 +8,19 @@ export const metadata: Metadata = {
     "Cheque Mates Hangouts — meet up with the Mic Cheque Podcast crew in person.",
 };
 
-// Placeholder events — swap in real dates/venues once ready.
 const events: HangoutEvent[] = [
   {
-    day: "14",
-    month: "Nov",
-    city: "Eldoret",
-    venue: "Placeholder venue name",
-    blurb: "Placeholder blurb about what happens at this hangout — swap in real details once confirmed.",
-  },
-  {
-    day: "29",
+    day: "07",
     month: "Nov",
     city: "Nairobi",
-    venue: "Placeholder venue name",
-    blurb: "Placeholder blurb about what happens at this hangout — swap in real details once confirmed.",
+    venue: "Venue TBC",
+    time: "12:00 Noon",
+    price: "KES 1,500",
+    blurb:
+      "It's official! Our final Cheque Mates Hangout of 2026 — let's come together to celebrate the memories, the banter, the friendships, and everything that made 2026 unforgettable. Travel updates: we're organizing transport options for everyone attending, more details dropping soon. Tell a Cheque Mate.",
+    ticketUrl: "https://micchequepodcast.hustlesasa.shop",
   },
 ];
-
-// Placeholder recap cities — swap in real photos once ready.
-const recaps = ["Eldoret", "Nairobi", "Mombasa", "Kisumu"];
 
 export default function HangoutsPage() {
   return (
@@ -57,17 +49,6 @@ export default function HangoutsPage() {
         <div className="divide-y-2 divide-ink/10">
           {events.map((event) => (
             <EventRow event={event} key={event.city + event.day} />
-          ))}
-        </div>
-      </section>
-
-      <section className="px-6 py-16 max-w-4xl mx-auto">
-        <h2 className="font-display uppercase leading-none text-ink text-[clamp(1.6rem,3.5vw,2.4rem)] mb-8">
-          Past Hangouts
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {recaps.map((city) => (
-            <RecapTile city={city} key={city} />
           ))}
         </div>
       </section>
