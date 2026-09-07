@@ -20,7 +20,7 @@ const hosts: Host[] = [
   {
     number: "02",
     name: "Mariah",
-    role: " Media Personality",
+    role: "Media Personality",
     bio: "Black and unstoppable!",
     photo: "/hosts/mariah.jpg",
   },
@@ -49,11 +49,12 @@ export default function HostsPage() {
         </div>
       </section>
 
-      <section className="px-6 max-w-5xl mx-auto divide-y-2 divide-ink/10">
+      <section>
         {hosts.map((host, i) => (
           <HostRow
             host={host}
             align={i % 2 === 0 ? "left" : "right"}
+            tint={i % 2 === 1}
             key={host.name}
           />
         ))}
