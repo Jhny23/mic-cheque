@@ -1,11 +1,24 @@
 import RetroTV, { Episode, TV_FRAMES } from "./RetroTV";
 
-// photo left empty for now — pass an episode screenshot path once you have one,
-// e.g. photo: "/episodes/368.jpg"
 const episodes: Episode[] = [
-  { n: "368", title: "Kalasha Season", tag: "LIVE" },
-  { n: "367", title: "World Cup Talk ft. TOBIT", tag: "NEW" },
-  { n: "365", title: "Eldoret Hangout Recap", tag: "HOT" },
+  {
+    n: "394",
+    title: "Live From Kampala ft. Joshua Baraka",
+    tag: "LIVE",
+    photo: "/episodes/ep-394.jpg",
+  },
+  {
+    n: "392",
+    title: "Limited Living ft. Brayo Biker",
+    tag: "NEW",
+    photo: "/episodes/ep-392.jpg",
+  },
+  {
+    n: "373",
+    title: "Saddam Gomorah ft. Etania",
+    tag: "HOT",
+    photo: "/episodes/ep-373.jpg",
+  },
 ];
 
 export default function TuneIn() {
