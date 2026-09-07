@@ -41,7 +41,9 @@ export default function TuneIn() {
 
       <div className="mt-10">
         <a
-          href="#"
+          href="https://www.youtube.com/@UpSydDigitalNetworks"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block font-body font-bold px-5 py-2.5 uppercase text-xs tracking-wide border-2 border-ink text-ink"
         >
           View full archive
