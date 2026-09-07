@@ -68,7 +68,7 @@ export default function RetroTV({
               alt={ep.title}
               fill
               sizes="(max-width: 640px) 33vw, 260px"
-              className="object-cover"
+              className="object-contain"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-marigold">
