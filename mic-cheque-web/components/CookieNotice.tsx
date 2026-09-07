@@ -5,6 +5,35 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const STORAGE_KEY = "mc-cookie-consent";
 
+function CornerMark({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
+  const vertical: React.CSSProperties = {
+    position: "absolute",
+    width: 1,
+    height: 9,
+    background: "#1A1A1A",
+  };
+  const horizontal: React.CSSProperties = {
+    position: "absolute",
+    width: 9,
+    height: 1,
+    background: "#1A1A1A",
+  };
+
+  const pos: Record<string, React.CSSProperties> = {
+    tl: { top: -1, left: -1 },
+    tr: { top: -1, right: -1 },
+    bl: { bottom: -1, left: -1 },
+    br: { bottom: -1, right: -1 },
+  };
+
+  return (
+    <>
+      <div style={{ ...vertical, ...pos[position] }} />
+      <div style={{ ...horizontal, ...pos[position] }} />
+    </>
+  );
+}
+
 export default function CookieNotice() {
   const [visible, setVisible] = useState(false);
 
@@ -25,91 +54,68 @@ export default function CookieNotice() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-5 left-5 right-5 sm:right-auto sm:w-[360px] z-50"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0, rotate: -1.5 }}
-          exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="fixed bottom-5 left-5 right-5 sm:right-auto sm:w-[380px] z-50"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
         >
-          <div className="relative bg-paper p-5 shadow-[0_8px_0_rgba(0,0,0,0.15)]">
-            {/* tape corner */}
-            <div
-              className="absolute -top-2 left-8 bg-ink/10"
-              style={{ width: 44, height: 16, transform: "rotate(-3deg)" }}
-            />
+          <div
+            className="relative bg-paper p-6"
+            style={{ border: "1px solid #1A1A1A" }}
+          >
+            <CornerMark position="tl" />
+            <CornerMark position="tr" />
+            <CornerMark position="bl" />
+            <CornerMark position="br" />
 
-            {/* eyebrow + blinking badge */}
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-body font-bold text-[10px] uppercase tracking-wide text-static">
-                cookies.txt
+            {/* icon + label */}
+            <div className="flex items-center gap-2 mb-4">
+              <span
+                className="flex items-center justify-center bg-ink text-paper"
+                style={{ width: 20, height: 20, fontSize: 11 }}
+              >
+                ❋
               </span>
               <span
-                className="font-body font-bold text-[9px] uppercase tracking-wide bg-signal text-paper px-1.5 py-0.5"
-                style={{ animation: "mc-blink 1.1s steps(1) infinite" }}
+                className="font-body font-semibold text-[11px] uppercase tracking-[0.15em] text-ink"
+                style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
               >
-                New
+                Cookies
               </span>
             </div>
 
-            <h2 className="font-display uppercase text-2xl text-ink leading-none">
-              Real Talk
-            </h2>
-
-            <p className="font-body text-sm text-ink leading-relaxed opacity-80 mt-2">
-              We use cookies to keep the banter running smoothly. Not the
-              edible kind — no crumbs, just data that makes the site work
-              better.
+            {/* body copy */}
+            <p
+              className="text-ink leading-relaxed"
+              style={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontStyle: "italic",
+                fontSize: "15px",
+              }}
+            >
+              This site uses cookies to remember your preferences across
+              visits. Nothing is sold or shared.
             </p>
 
-            {/* marquee ticker, in-brand */}
-            <div className="mt-3 overflow-hidden whitespace-nowrap bg-ink py-1.5">
-              <div
-                className="inline-block font-body font-bold text-[10px] uppercase tracking-wide text-marigold"
-                style={{ animation: "mc-marquee 10s linear infinite" }}
+            {/* buttons */}
+            <div className="flex items-center gap-3 mt-6">
+              <button
+                onClick={() => respond("accepted")}
+                className="px-4 py-2 bg-ink text-paper text-sm"
+                style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
               >
-                ★ new episodes every wed &amp; sun ★ #bantertime ★ pull up
-                to the next hangout ★ new episodes every wed &amp; sun ★
-                #bantertime ★ pull up to the next hangout ★
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between mt-3">
-              <span className="font-body font-medium text-[10px] text-static">
-                visitor no. 004213
-              </span>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => respond("declined")}
-                  className="font-body font-bold px-3 py-1.5 uppercase text-[11px] tracking-wide border-2 border-ink text-ink"
-                >
-                  Nah
-                </button>
-                <button
-                  onClick={() => respond("accepted")}
-                  className="font-body font-bold px-3 py-1.5 uppercase text-[11px] tracking-wide bg-ink text-paper"
-                >
-                  Bet
-                </button>
-              </div>
+                (accept)
+              </button>
+              <button
+                onClick={() => respond("declined")}
+                className="px-4 py-2 text-sm text-static"
+                style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
+              >
+                (decline)
+              </button>
             </div>
           </div>
-
-          <style jsx>{`
-            @keyframes mc-marquee {
-              from {
-                transform: translateX(100%);
-              }
-              to {
-                transform: translateX(-100%);
-              }
-            }
-            @keyframes mc-blink {
-              50% {
-                opacity: 0.25;
-              }
-            }
-          `}</style>
         </motion.div>
       )}
     </AnimatePresence>
