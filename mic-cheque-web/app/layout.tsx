@@ -16,9 +16,23 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Mic Cheque Podcast ",
+  metadataBase: new URL("https://mic-cheque-web.vercel.app"),
+  title: "Mic Cheque Podcast",
   description:
     "Mic Cheque Podcast with Chaxy, Mariah and Mwass. New episodes every Wednesday and Sunday. #BanterTime",
+  openGraph: {
+    title: "Mic Cheque Podcast",
+    description:
+      "New episodes every Wednesday and Sunday. #BanterTime",
+    siteName: "Mic Cheque Podcast",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mic Cheque Podcast",
+    description:
+      "New episodes every Wednesday and Sunday. #BanterTime",
+  },
 };
 
 export default function RootLayout({
