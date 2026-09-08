@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Anton, Space_Grotesk } from "next/font/google";
-import CookieNotice from "@/components/CookieNotice";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -34,7 +33,6 @@ export default function RootLayout({
       >
         {children}
         <Footer />
-        <CookieNotice />
       </body>
     </html>
   );
